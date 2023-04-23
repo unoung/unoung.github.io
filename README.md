@@ -114,7 +114,7 @@ author: {
     name: 'GREEN',
     bio: {
       role: '개발자',
-      description: ['사람에 가치를 두는', '능동적으로 일하는', '이로운 것을 만드는'],
+      description: ['경험과 경험을 잇는', '감각적인', '이로운 것을 만드는'],
       thumbnail: `emojime.gif`,
     },
     social: {
