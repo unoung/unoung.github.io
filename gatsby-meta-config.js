@@ -2,7 +2,7 @@ module.exports = {
   title: `unoung.com`,
   description: `개발로그`,
   language: `ko`, // `ko`, `en` => currently support versions for Korean and English
-  siteUrl: `https://www.zoomkoding.com`,
+  siteUrl: `https://unoung.github.io/`,
   ogImage: `/og-image.png`, // Path to your in the 'static' folder
   comments: {
     utterances: {
@@ -18,9 +18,9 @@ module.exports = {
       thumbnail: 'emojime.gif', // Path to the image in the 'asset' folder
     },
     social: {
-      github: ``, // `https://github.com/zoomKoding`,
+      github: `https://github.com/unoung`, // `https://github.com/zoomKoding`,
       linkedIn: ``, // `https://www.linkedin.com/in/jinhyeok-jeong-800871192`,
-      email: ``, // `zoomkoding@gmail.com`,
+      email: `unoung@icloud.com`, // `zoomkoding@gmail.com`,
     },
   },
 
