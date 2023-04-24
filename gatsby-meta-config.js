@@ -1,5 +1,5 @@
 module.exports = {
-  title: `unoung.com`,
+  title: `unoung.Devlog`,
   description: `개발로그`,
   language: `ko`, // `ko`, `en` => currently support versions for Korean and English
   siteUrl: `https://unoung.github.io/`,
@@ -11,11 +11,11 @@ module.exports = {
   },
   ga: '0', // Google Analytics Tracking ID
   author: {
-    name: `GREEN`,
+    name: `권선영`,
     bio: {
       role: `개발자`,
-      description: ['경험과 경험을 잇는', '감각적인', '영화를 좋아하는','옷을 좋아하는'],
-      thumbnail: 'emojime.gif', // Path to the image in the 'asset' folder
+      description: ['경험과 경험을 잇는', '감각적인', '영화를 좋아하는', '옷을 좋아하는'],
+      thumbnail: 'itsme.gif', // Path to the image in the 'asset' folder
     },
     social: {
       github: `https://github.com/unoung`, // `https://github.com/zoomKoding`,
@@ -47,7 +47,6 @@ module.exports = {
         activity: 'GML 프론트엔드 개발',
         links: {
           github: 'https://github.com/unoung',
-          
         },
       },
     ],
@@ -70,9 +69,7 @@ module.exports = {
       },
       // ========================================================
       // ========================================================
-      {
-
-      },
+      {},
     ],
   },
 };
