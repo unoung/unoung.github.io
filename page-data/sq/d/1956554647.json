@@ -1,1 +1,1 @@
-{"data":{"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"첫번째 글","categories":"블로그 featured"},"fields":{"slug":"/gatsby-github-blog/"}}}]}}}
+{"data":{"allMarkdownRemark":{"edges":[{"node":{"frontmatter":{"title":"블로그를 시작하면서","categories":"블로그 일상"},"fields":{"slug":"/gatsby-github-blog/"}}}]}}}
