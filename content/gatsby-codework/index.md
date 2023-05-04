@@ -128,3 +128,5 @@ B is apple
 A is 5 and B is apple
 
 ```
+
+### 소수점 맞춰 출력하기
