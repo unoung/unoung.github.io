@@ -130,3 +130,14 @@ A is 5 and B is apple
 ```
 
 ### 소수점 맞춰 출력하기
+
+```python
+
+a = 33.567884
+
+print("%.4f" % a)
+
+print(f"{a:.4f}")
+
+
+```
