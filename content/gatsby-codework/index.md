@@ -141,3 +141,25 @@ print(f"{a:.4f}")
 
 
 ```
+
+### 다른 변수로부터 변수 값 변경
+
+```python
+
+a, b = 5, 3
+print("A is", a)
+
+a = b
+print("A is", a)
+
+a = 2
+print("B is", b)
+
+
+
+A is 5
+A is 3
+B is 3
+
+```
+
