@@ -163,4 +163,38 @@ B is 3
 
 ```
 
+### 두 변수 값을 교환
 
+1. temp 이용
+
+> 언어와 무관하게 temp라는 추가 변수를 사용하여 두 변수 값을 교환할 수 있다.
+
+```python
+
+a, b = 5, 3
+
+temp = a
+a = b
+b = temp
+
+print(f"A is {a} B is {b}")
+
+
+
+A is 3 B is 5
+
+```
+
+2. <code>,</code>를 이용하여 바로 교환하기
+
+```python
+
+a, b = 5, 3
+
+a, b = b, a
+
+print(f"A is {a} B is {b}")
+
+A is 3 B is 5
+
+```
