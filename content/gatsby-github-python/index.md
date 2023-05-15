@@ -4,7 +4,7 @@ title: 코드트리 Python
 date: '2023-04-26 10:22:00'
 author: unoung
 tags: code python
-categories: python 
+categories: python
 ---
 
 <br/>
@@ -22,13 +22,14 @@ categories: python
 2개의 값을 공백을 사이에 두고 출력하기 위해서는 몇가지 방법이 있다.
 
 > print 함수에 <code>,</code> 를 사이에 두고 넣어준다.
+
 ```python
 print(3,5)
 
 3 5
 ```
 
->print 함수를 2번 사용하려면 end값을 공백으로 넣어준다.
+> print 함수를 2번 사용하려면 end값을 공백으로 넣어준다.
 
 ```python
 print(3, end=" ")
@@ -37,7 +38,7 @@ print(5)
 3 5
 ```
 
-* 만약 공백을 사이에 두고 출력하고 싶은게 아니라면?
+- 만약 공백을 사이에 두고 출력하고 싶은게 아니라면?
 
 > 구분자로 사용할 값을 sep를 이용하여 직접 설정해준다.
 
@@ -70,17 +71,12 @@ A is 5 and B is apple
 ```
 
 > <code>%s</code> : 문자열
-<br/>
-<br/>
-> <code>%c</code> : 문자
-<br/>
-<br/>
-> <code>%d</code> : 정수
-<br/>
-<br/>
-> <code>%f</code> : 실수
-
-
+> <br/>
+> <br/> > <code>%c</code> : 문자
+> <br/>
+> <br/> > <code>%d</code> : 정수
+> <br/>
+> <br/> > <code>%f</code> : 실수
 
 2. format 함수를 이용하기
 
@@ -197,4 +193,48 @@ print(f"A is {a} B is {b}")
 
 A is 3 B is 5
 
+```
+
+### 변수값 동시에 복사
+
+```python
+
+a, b, c = 5, 3, 9
+
+a = b = c
+
+print(f"A is {a} B is {b} C is {c}")
+
+
+A is 9 B is 9 C is 9
+
+```
+
+### 입력
+
+> python에서는 input() 이라는 함수를 통해 항상 한 줄 단위로 입력을 받을 수 있다. 예를 들어 문장을 하나 입력받아 그대로 출력하는 코드는 다음과 같이 작성해볼 수 있다. type은 문자열로 받는다.
+
+```python
+
+a = input()
+
+print(f"A is {a}")
+
+>> Hello World
+
+A is Hello World
+
+```
+
+> 만약 숫자를 하나 입력받아 1을 더해 출력하려면 이렇게 해야한다.
+
+```python
+
+a = int(input())
+
+print(a + 1)
+
+>> 3
+
+4
 ```
