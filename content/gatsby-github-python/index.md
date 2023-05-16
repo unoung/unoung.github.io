@@ -71,12 +71,9 @@ A is 5 and B is apple
 ```
 
 > <code>%s</code> : 문자열
-> <br/>
-> <br/> > <code>%c</code> : 문자
-> <br/>
-> <br/> > <code>%d</code> : 정수
-> <br/>
-> <br/> > <code>%f</code> : 실수
+> <br/> > <br/> > <code>%c</code> : 문자
+> <br/> > <br/> > <code>%d</code> : 정수
+> <br/> > <br/> > <code>%f</code> : 실수
 
 2. format 함수를 이용하기
 
@@ -237,4 +234,20 @@ print(a + 1)
 >> 3
 
 4
+```
+
+### 실수 입력
+
+> 문자열을 실수형 type으로 바꾸기 위해서는 float로 감싸준다
+
+```python
+
+a = input()
+a = float(a)
+
+print(a + 0.58)
+
+>> 3.79
+
+4.37
 ```
