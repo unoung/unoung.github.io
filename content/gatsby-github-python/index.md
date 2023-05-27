@@ -8,7 +8,6 @@ categories: python
 ---
 
 <br/>
-<br/>
 
 ## 👾 코드트리 기초 파이썬 문법
 
