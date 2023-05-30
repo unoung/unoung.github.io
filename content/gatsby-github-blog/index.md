@@ -4,7 +4,7 @@ title: 블로그를 시작하면서
 date: '2023-04-26 10:22:00'
 author: unoung
 tags: 블로그
-categories: 블로그 일상
+categories: 블로그
 ---
 
 <br/>

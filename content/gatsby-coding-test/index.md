@@ -176,6 +176,75 @@ console.log(x.toFixed(2));
 
 ```
 
+<br/>
+<br/>
+
+## filter()
+
+- filter() 메서드는 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환한다.
+
+<br/>
+
+> 코딩 테스트에서 배열 중 요소를 필터링 해야할 때 사용함
+
+```JS
+
+function isBigEnough(value) {
+  return value >= 10;
+}
+
+var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+// filtered 는 [12, 130, 44]
+
+
+let lost_student = [1,2,3,4];
+
+lost_student = lost_student.filter(v => v !== 5);
+
+// lost_student 배열 요소 중  5가 아닌거 필터링 해서 재배열
+
+```
+
+<br/>
+<br/>
+
+## includes()
+
+- includes() 메서드는 배열이 특정 요소를 포함하고 있는지 판별한다.
+
+<br/>
+
+> 코딩 테스트에서 배열 중 요소를 포함하고 있는지 판별할 때 사용함
+<br/>
+
+> 참고: 문자나 문자열을 비교할 때, includes()는 대소문자를 구분한다.
+
+
+```JS
+const array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+// Expected output: true
+
+const pets = ['cat', 'dog', 'bat'];
+
+console.log(pets.includes('cat'));
+// Expected output: true
+
+console.log(pets.includes('at'));
+// Expected output: false
+
+//reserve,lost 는 배열
+ let reserve_student = reserve.filter(v => !lost.includes(v)).sort();
+
+ // reserve를 필터링한다 lost 배열 중 reserve배열의 요소를 가지고 있지 않은 애들을 배열로 만들어서 sort함
+
+
+```
+
+
+
+
 ```toc
 
 ```
