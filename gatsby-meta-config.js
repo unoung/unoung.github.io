@@ -19,7 +19,7 @@ module.exports = {
     },
     social: {
       github: `https://github.com/unoung`, // `https://github.com/zoomKoding`,
-      linkedIn: ``, // `https://www.linkedin.com/in/jinhyeok-jeong-800871192`,
+      linkedIn: `https://www.linkedin.com/in/sunyoung-kwon-63327a278`, // `https://www.linkedin.com/in/jinhyeok-jeong-800871192`,
       email: `unoung@icloud.com`, // `zoomkoding@gmail.com`,
     },
   },
@@ -43,11 +43,19 @@ module.exports = {
       // ========================================================
       // ========================================================
       {
-        date: '2022.07 ~',
-        activity: 'GML 프론트엔드 개발',
+        date: '2022.07 ~ 2023.07',
+        activity: 'GML Frontend',
+      },
+      {
+        date: '2023.06 ~ ',
+        activity: '경조사 관리 어플 얼마나 개발',
         links: {
-          github: 'https://github.com/unoung',
+          github: 'https://github.com/HowMuchPay',
         },
+      },
+      {
+        date: '2023.08 ~ ',
+        activity: '어메이징 티켓 Frontend',
       },
     ],
 
