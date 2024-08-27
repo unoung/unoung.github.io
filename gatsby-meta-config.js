@@ -54,7 +54,7 @@ module.exports = {
         },
       },
       {
-        date: '2023.08 ~ ',
+        date: '2023.08 ~ 2024.05',
         activity: '어메이징 티켓 Frontend',
       },
     ],
