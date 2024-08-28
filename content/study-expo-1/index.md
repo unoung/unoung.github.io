@@ -187,3 +187,7 @@ export default function Details() {
 
 // 한번에 스크린 넣기 -> Stack.Screen은 스크린 만들어주는 거니깐
 ```
+
+```toc
+
+```
