@@ -65,7 +65,8 @@ app/
 
 - setParams: 현재화면에서 url에 포함된 파라미터를 업데이트함, 주로 동적 데이터 업데이트 할 때 사용, 예를 들어 filter 처리를 한다고 하면 router.setParams({ filter: 'new' }) 호출하면 url에 '?filter=new'를 추가되거나 filter 파라미터가 업데이트 된다. 이로 인해 화면이 리렌더링되고 ui가 새로 만들어짐<br/>
   화면전환이 발생하지 않고, 화면의 상태만 바뀜
-  <br/>
+
+<br/>
 
 ### 5. setParams vs push, replace
 
@@ -84,6 +85,105 @@ app/
 
 <br/>
 
-```toc
+### 6. Slot
 
+- 경로만든 폴더 안에 \_layout.tsx는 이런식으로 구성한다
+
+```js
+import { Slot } from 'expo-router';
+
+export default function Layout() {
+  return (
+    <View>
+      <Slot />
+    </View>
+  );
+}
+```
+
+여기서 Slot은 **자식 경로를 렌더링**한다. childern과 비슷함
+
+### 7. Stack
+
+- stack에 따라서 ios, android의 애니매이션이 적용되는데 (iosr경우 오른쪽에서 애니메이션 나오는거) 예를 들어
+  폴더 구조가 app > \_layout.tsx, index.tsx, details.tsx가 있다면
+
+```js
+//_layout.tsx
+
+<Stack
+  screenOptions={{
+    headerShown: false,
+    statusBarColor: 'transparent', //공통 헤더바 옵션
+  }}
+>
+  <Stack.Screen name="home" /> //index.tsx 인데 이름이 home 스택의 첫번째 경로
+</Stack>
+```
+
+```js
+//index.tsx
+
+export default function Home() {
+  return (
+    <View style={styles.container}>
+      <Stack.Screen // 이렇게하면 해더바 동적으로 구성 가능
+        options={{
+          title: 'My home',
+          headerStyle: { backgroundColor: '#f4511e' },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+      <Text>Home Screen</Text>
+      <Link href={{ pathname: 'details', params: { name: 'Bacon' } }}>Go to Details</Link>
+    </View>
+  );
+}
+```
+
+```js
+//details.tsx
+
+export default function Details() {
+  const router = useRouter();
+  const params = useLocalSearchParams(); // 파라미터 가져오기
+
+  return (
+    <View style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: params.name,
+        }}
+      />
+      <Text
+        onPress={() => {
+          router.setParams({ name: 'Updated' });
+        }}
+      >
+        Update the title
+      </Text>
+    </View>
+  );
+}
+```
+
+**❓ 근데 Stack.Screen 이 screen 만드는거 아닌가? Stack.Screen이 헤더로만 사용이 가능한건가? 내 원래 예상은 이거였다.**
+
+```js
+//_layout.tsx
+
+<Stack
+  screenOptions={{
+    headerShown: false,
+    statusBarColor: 'transparent', //공통 헤더바 옵션
+  }}
+>
+  <Stack.Screen name="home" /> //index.tsx 인데 이름이 home 스택의 첫번째 경로
+  <Stack.Screen name="details" /> //index.tsx 인데 이름이 home 스택의 첫번째 경로
+</Stack>
+
+// 한번에 스크린 넣기 -> Stack.Screen은 스크린 만들어주는 거니깐
 ```
