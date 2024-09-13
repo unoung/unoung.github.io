@@ -7,8 +7,6 @@ tags: expo
 categories: expo
 ---
 
-<br/>
-
 ## expo-router란?
 
 ### 1. 파일기반의 라우팅
@@ -18,6 +16,7 @@ categories: expo
 - 예를 들어 'app/home.js' 파일이라면 '/home' 경로가 된다.
 
 <br/>
+
 ### 2. 중괄호, 대괄호
 
 - 중괄호는 경로에 포함되지 않으며 생략된다
