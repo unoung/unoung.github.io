@@ -1,0 +1,92 @@
+---
+layout: default
+---
+
+<div class="post-container">
+  <header class="post-header">
+    {% if page.categories.size > 0 %}
+    <div class="post-category">{{ page.categories | first }}</div>
+    {% endif %}
+
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+
+    <div class="post-meta" style="margin-top: 20px">
+      <span class="post-date">{{ page.date | date: "%Y년 %m월 %d일" }}</span>
+    </div>
+  </header>
+
+  <article class="post-content">{{ content }}</article>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const content = document.querySelector(".post-content");
+      // 본문 안의 h2(##), h3(###) 태그를 모두 찾습니다.
+      const headings = content.querySelectorAll("h2, h3");
+
+      // 제목이 없으면 목차를 만들지 않고 종료합니다.
+      if (headings.length === 0) return;
+
+      // 목차를 담을 회색 박스(div)를 생성합니다.
+      const tocContainer = document.createElement("div");
+      tocContainer.className = "toc-container";
+
+      // 목차 타이틀 (사진과 동일한 아이콘 적용)
+      tocContainer.innerHTML = '<div class="toc-title">📄 목차</div><ul class="toc-list"></ul>';
+      const tocList = tocContainer.querySelector(".toc-list");
+
+      // 찾은 제목들을 하나씩 돌면서 목차 리스트에 넣습니다.
+      headings.forEach((heading) => {
+        // 제목에 고유 ID가 없다면 만들어줍니다. (클릭 시 이동하기 위함)
+        if (!heading.id) {
+          heading.id = heading.innerText.trim().replace(/\s+/g, "-");
+        }
+
+        const li = document.createElement("li");
+        // h2인지 h3인지에 따라 클래스를 다르게 줘서 들여쓰기를 조절합니다.
+        li.className = `toc-item toc-${heading.tagName.toLowerCase()}`;
+
+        const a = document.createElement("a");
+        a.href = `#${heading.id}`;
+        a.innerText = heading.innerText;
+
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      // 완성된 목차 박스를 본문(content)의 맨 첫 번째 자식으로 삽입합니다.
+      content.insertBefore(tocContainer, content.firstChild);
+    });
+  </script>
+
+  {% if page.tags.size > 0 %}
+  <div class="post-tags-bottom">
+    {% for tag in page.tags %}
+    <span class="tag-pill">#{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %} {% if page.author %} {% assign author = site.data.authors[page.author] %}
+
+  <div class="post-author-bottom" style="margin-top: 50px; padding-top: 40px; border-top: 1px solid #eee; display: flex; align-items: center; gap: 24px">
+    {% if author.avatar %}
+    <img src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 1px solid #f1f3f5" />
+    {% else %}
+    <div style="width: 80px; height: 80px; border-radius: 50%; background-color: #f1f3f5"></div>
+    {% endif %}
+
+    <div class="author-info" style="display: flex; flex-direction: column; gap: 10px">
+      <div class="author-title" style="font-size: 18px; font-weight: 700; color: #333">
+        {{ author.name | default: page.author }}
+        <span style="font-weight: 400; color: #adb5bd; margin: 0 4px">|</span>
+        <span style="font-weight: 500; color: #495057">{{ author.role | default: "Engineer" }}</span>
+      </div>
+
+      {% if author.bio %}
+      <div class="author-bio" style="font-size: 16px; color: #495057">{{ author.bio }}</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="post-comments" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee">
+    <script src="https://utteranc.es/client.js" repo="foodcook-dev/foodcook-dev.github.io" issue-term="pathname" label="comment" theme="github-light" crossorigin="anonymous" async></script>
+  </div>
+</div>

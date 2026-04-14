@@ -1,0 +1,42 @@
+<header class="site-header" role="banner" style="border-bottom: 1px solid #e8e8e8; background-color: #ffffff; position: relative; z-index: 1000;">
+  <div class="wrapper" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; max-width: 1020px; margin: 0 auto; width: 100%;">
+    
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: #111; text-decoration: none; position: relative; z-index: 1001;">
+      <img src="/assets/logo/logo.png" alt="로고" style="height: 40px; width: auto;">
+      {{ site.title | escape }}
+    </a>
+
+    <button class="menu-toggle" aria-label="메뉴 열기" style="background: none; border: none; cursor: pointer; position: relative; z-index: 1001; padding: 5px;">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <nav class="site-nav" style="margin-left: auto;">
+      <div class="trigger" style="display: flex; gap: 20px;">
+        <!-- <a class="page-link" href="/recruit/" style="color: #333; text-decoration: none; font-weight: 600;">about</a> -->
+        <!-- <a class="page-link" href="/company/" style="color: #333; text-decoration: none; font-weight: 600;">회사정보</a> -->
+      </div>
+    </nav>
+    
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+    const iconSvg = menuToggle.querySelector('svg');
+
+    menuToggle.addEventListener('click', function() {
+      siteNav.classList.toggle('is-open');
+      if (siteNav.classList.contains('is-open')) {
+        iconSvg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+      } else {
+        iconSvg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+      }
+    });
+  });
+</script>

@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+<div class="home">
+  <div
+    class="category-filter"
+    style="display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; margin-top: 20px"
+  >
+    <button class="filter-btn active" data-filter="all">전체</button>
+    <button class="filter-btn" data-filter="프론트엔드">프론트엔드</button>
+    <button class="filter-btn" data-filter="백엔드">백엔드</button>
+
+    <!-- <button class="filter-btn" data-filter="마케팅">마케팅</button> -->
+  </div>
+
+  <ul
+    class="post-list"
+    style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 30px"
+  >
+    {% for post in site.posts %}
+    <li class="post-card" data-category="{{ post.categories | first }}">
+      <div class="post-image">
+        {% if post.image %}
+        <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+        {% else %}
+        <div
+          style="
+            width: 100%;
+            height: 100%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #adb5bd;
+          "
+        >
+          No Image
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="category">{{ post.categories | first | default: '미분류' }}</span>
+          <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+        </div>
+
+        <h3 class="post-title">
+          <a class="post-link" href="{{ post.url | relative_url }}"> {{ post.title | escape }} </a>
+        </h3>
+
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+
+        <div class="post-tags">
+          {% for tag in post.tags limit:4 %}
+          <span class="tag-pill">#{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postCards = document.querySelectorAll('.post-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // 모든 버튼에서 active 클래스 제거 후, 클릭한 버튼에만 active 추가
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 클릭한 버튼의 카테고리 값 가져오기
+        const targetCategory = btn.getAttribute('data-filter');
+
+        // 카드 필터링
+        postCards.forEach((card) => {
+          const cardCategory = card.getAttribute('data-category');
+
+          // '전체'를 누르거나, 카드의 카테고리가 타겟 카테고리와 일치하면 보여줌
+          if (targetCategory === 'all' || targetCategory === cardCategory) {
+            card.style.display = 'flex'; // 우리 카드는 기존에 flex 속성을 사용함
+          } else {
+            card.style.display = 'none'; // 조건에 안 맞으면 숨김
+          }
+        });
+      });
+    });
+  });
+</script>

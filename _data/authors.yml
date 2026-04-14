@@ -1,0 +1,8 @@
+# _data/authors.yml
+
+# 예시 1: 프론트엔드 개발자 프로필
+unoung:
+  name: '그린'
+  role: '프론트엔드'
+  avatar: '/assets/author/green.png'
+  bio: '감각적인걸 좋아해' # 사진처럼 프로필 아래에 들어갈 한 줄 소개
