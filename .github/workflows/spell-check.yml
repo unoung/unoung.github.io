@@ -1,0 +1,98 @@
+name: Korean Spell Check
+
+# PR이 열리거나 코드가 추가로 푸시될 때 자동으로 실행됩니다.
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  spell_check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # 코드를 읽어올 권한
+      pull-requests: write # PR에 댓글을 달 권한
+
+    steps:
+      - name: 1. 코드 가져오기
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 2. 변경된 마크다운 파일 찾기
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          quotepath: false
+          # 🚨 [수정!] 여러 줄 대신 중괄호를 써서 한 줄로 깔끔하게 묶었어.
+          files: '**/*.{md,markdown}'
+
+      # 🚨 [추가!] 진짜로 파일을 감지했는지 눈으로 확인하기 위한 디버그 스텝
+      - name: 2-1. [디버그] 감지된 파일 목록 확인
+        run: |
+          echo "감지된 마크다운 파일들: ${{ steps.changed-files.outputs.all_changed_files }}"
+          echo "변경 여부(true/false): ${{ steps.changed-files.outputs.any_changed }}"
+
+      - name: 3. Node.js 환경 세팅
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 4. 맞춤법 검사기(hanspell) 설치
+        if: steps.changed-files.outputs.any_changed == 'true'
+        # 🚨 [수정 2] 설치할 패키지 이름은 'hanspell-cli'가 아니라 'hanspell'이야!
+        run: npm install -g hanspell
+
+      - name: 5. 맞춤법 검사 실행 및 결과 정리
+        if: steps.changed-files.outputs.any_changed == 'true'
+        id: run_spellcheck
+        run: |
+          export FORCE_COLOR=0 
+          REPORT_FILE="pr_comment.md"
+
+          echo "### 📝 마인드쿡 맞춤법 검사 결과" > $REPORT_FILE
+          echo "" >> $REPORT_FILE
+          HAS_ERROR=false
+
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            
+            # 1. 교정 제안(로그)만 추출 (stderr 활용)
+            SUGGESTIONS=$(cat "$file" | hanspell-cli 2>&1 >/dev/null | grep " -> " | awk '!seen[$0]++' | sed 's/^/- /' || true)
+            
+            if [ -n "$SUGGESTIONS" ]; then
+              HAS_ERROR=true
+              
+              echo "#### 📄 \`$file\`" >> $REPORT_FILE
+              echo "$SUGGESTIONS" >> $REPORT_FILE
+              echo "" >> $REPORT_FILE
+              
+              # 2. 수정된 전체 텍스트를 접었다 펼칠 수 있는 토글 형태로 추가
+              echo "<details>" >> $REPORT_FILE
+              echo "<summary>✨ 수정된 파일 전체 내용 보기 (복사해서 바로 쓰세요!)</summary>" >> $REPORT_FILE
+              echo "" >> $REPORT_FILE
+              echo '```markdown' >> $REPORT_FILE
+              
+              # 원본 텍스트의 코드 블록이나 줄바꿈이 깨지지 않도록 결과값(stdout)을 파일에 바로 이어 붙입니다.
+              cat "$file" | hanspell-cli 2> /dev/null >> $REPORT_FILE || true
+              
+              echo '```' >> $REPORT_FILE
+              echo "</details>" >> $REPORT_FILE
+              echo "" >> $REPORT_FILE
+            fi
+          done
+
+          if [ "$HAS_ERROR" = false ]; then
+            echo "✨ 완벽합니다! 수정된 파일에 맞춤법 오류가 없습니다." >> $REPORT_FILE
+          fi
+
+          # GitHub Actions 환경 변수(Output)에 파일 내용 등록
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          cat $REPORT_FILE >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 6. PR에 결과 댓글(Comment) 달기
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: spell-check
+          message: ${{ steps.run_spellcheck.outputs.report }}
