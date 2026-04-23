@@ -1168,6 +1168,445 @@ a {
 }
 
 /* =========================================
+   About 페이지
+   ========================================= */
+.about-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px 100px;
+}
+
+/* --- 히어로 섹션 --- */
+.about-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.about-hero-text {
+  flex: 1;
+}
+
+.about-greeting {
+  font-size: 22px;
+  color: #adb5bd;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.about-title {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.55;
+  color: #111;
+  margin: 0 0 30px 0;
+  word-break: keep-all;
+}
+.about-title .about-divider {
+  font-weight: 300;
+  color: #ced4da;
+  margin: 0 6px;
+}
+.about-title strong {
+  color: #111;
+}
+
+.about-hero-img {
+  flex-shrink: 0;
+}
+
+.about-profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f1f3f5;
+}
+
+/* 소셜 링크 */
+.about-social {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.about-social-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  padding: 7px 16px;
+  border: 1.5px solid #dee2e6;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.about-social-link:hover {
+  border-color: #91c147;
+  color: #91c147;
+  background-color: transparent;
+}
+
+/* --- 공통 섹션 --- */
+.about-section {
+  margin-bottom: 72px;
+}
+
+.about-section-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 28px 0;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #91c147;
+  display: inline-block;
+}
+
+/* --- 타임라인 --- */
+.about-timeline {
+  list-style: none;
+  padding: 0 0 0 20px;
+  margin: 0;
+  border-left: 2px solid #e9ecef;
+}
+
+.about-timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.about-timeline-item:last-child {
+  margin-bottom: 0;
+}
+.about-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #91c147;
+}
+
+.about-timeline-date {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #91c147;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.about-timeline-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #868e96;
+  background-color: #f1f3f5;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.about-timeline-body strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #212529;
+  display: block;
+  margin-bottom: 6px;
+}
+.about-timeline-body p {
+  font-size: 14px;
+  color: #868e96;
+  margin: 0;
+  line-height: 1.6;
+}
+.about-timeline-body p b {
+  color: #495057;
+  font-weight: 600;
+}
+
+/* --- 프로젝트 아코디언 (도전과제) --- */
+.about-project-challenges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.about-challenge {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.about-challenge summary {
+  font-size: 14px;
+  font-weight: 600;
+  color: #343a40;
+  padding: 11px 16px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  transition: background-color 0.15s ease;
+}
+.about-challenge summary::-webkit-details-marker {
+  display: none;
+}
+.about-challenge summary::before {
+  content: "▸";
+  font-size: 11px;
+  color: #91c147;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.about-challenge summary:hover {
+  background-color: #f8f9fa;
+}
+.about-challenge[open] summary::before {
+  transform: rotate(90deg);
+}
+.about-challenge[open] summary {
+  border-bottom: 1px solid #f1f3f5;
+  background-color: #f8f9fa;
+}
+
+.about-challenge-body {
+  padding: 14px 16px;
+  background-color: #fafafa;
+}
+.about-challenge-body p {
+  font-size: 14px;
+  color: #495057;
+  line-height: 1.7;
+  margin: 0 0 8px 0;
+  word-break: keep-all;
+}
+.about-challenge-body p:last-child {
+  margin-bottom: 0;
+}
+.about-challenge-body p b {
+  color: #212529;
+  font-weight: 700;
+}
+.about-challenge-body p strong {
+  color: #212529;
+  font-weight: 700;
+}
+.about-challenge-body p code {
+  background-color: #f1f3f5;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: "Consolas", monospace;
+  font-size: 0.88em;
+  color: #e83e8c;
+}
+
+/* --- 프로젝트 하단 기능 태그 --- */
+.about-project-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f3f5;
+}
+
+.about-feature-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: #868e96;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* --- 기술 스택 --- */
+.about-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-skill-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.about-skill-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #adb5bd;
+  min-width: 80px;
+  padding-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.about-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-tag {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+}
+
+/* --- 프로젝트 카드 --- */
+.about-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-project-card {
+  background-color: #f8f9fa;
+  border: 1px solid #f1f3f5;
+  border-radius: 12px;
+  padding: 28px 30px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.about-project-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.about-project-top {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-bottom: 14px;
+}
+
+.about-project-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #212529;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.about-project-title a {
+  color: #212529;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  font-weight: 700;
+}
+.about-project-title a:hover {
+  color: #91c147;
+  background: transparent !important;
+}
+
+.about-project-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #adb5bd;
+}
+
+.about-project-period {
+  font-size: 13px;
+  font-weight: 600;
+  color: #91c147;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.about-project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.about-project-bullets {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+.about-project-bullets li {
+  font-size: 14px;
+  color: #495057;
+  line-height: 1.7;
+  margin-bottom: 5px;
+  word-break: keep-all;
+}
+.about-project-bullets li strong {
+  color: #212529;
+  font-weight: 700;
+}
+
+.about-tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.about-project-desc {
+  font-size: 15px;
+  color: #495057;
+  line-height: 1.65;
+  margin: 0 0 16px 0;
+}
+
+.about-project-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #91c147;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  transition: opacity 0.2s;
+}
+.about-project-link:hover {
+  opacity: 0.75;
+  background: transparent !important;
+}
+
+/* --- 모바일 반응형 --- */
+@media screen and (max-width: 768px) {
+  .about-hero {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .about-social {
+    justify-content: center;
+  }
+  .about-title {
+    font-size: 24px;
+  }
+  .about-profile-img {
+    width: 120px;
+    height: 120px;
+  }
+  .about-skill-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .about-skill-label {
+    min-width: unset;
+    padding-top: 0;
+  }
+}
+/* =========================================
    자동 목차 (TOC) 디자인 및 부드러운 스크롤 (수정본)
    ========================================= */
 html {
